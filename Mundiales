@@ -1,1 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>México Lindo y Mundialista: Poder, Luces y Sombras</title>
+    <style>
+        :root {
+            --verde-azteca: #006847;
+            --rosa-mexicano: #E4007C;
+            --oro-sol: #F9A825;
+            --blanco-puro: #FFFFFF;
+            --fondo-vivo: #F4F6F0;
+            --texto-negro: #1C1E21;
+        }
 
+        body {
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--texto-negro);
+            background-color: var(--fondo-vivo);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--verde-azteca) 20%, #004d34 100%);
+            color: var(--blanco-puro);
+            text-align: center;
+            padding: 4rem 1rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 6px solid var(--rosa-mexicano);
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0.08;
+            background-image: repeating-linear-gradient(45deg, #fff 0, #fff 2px, transparent 0, transparent 50%),
+                              repeating-linear-gradient(-45deg, #fff 0, #fff 2px, transparent 0, transparent 50%);
+            background-size: 24px 24px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0px var(--rosa-mexicano);
+        }
+
+        header p {
+            margin: 0.8rem 0 0 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--oro-sol);
+        }
+
+        main {
+            max-width: 850px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .introduccion {
+            background-color: var(--blanco-puro);
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border-bottom: 4px solid var(--oro-sol);
+            margin-bottom: 3rem;
+        }
+
+        .linea-tiempo {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .tarjeta-mundial {
+            background-color: var(--blanco-puro);
+            border-radius: 16px;
+            padding: 2.2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .tarjeta-mundial::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 6px;
+            border-radius: 16px 16px 0 0;
+        }
+        .tarjeta-mundial.m70::before { background-color: var(--verde-azteca); }
+        .tarjeta-mundial.m86::before { background-color: var(--oro-sol); }
+        .tarjeta-mundial.m26::before { background-color: var(--rosa-mexicano); }
+
+        .tarjeta-mundial h2 {
+            margin-top: 0;
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--verde-azteca);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tarjeta-mundial h2 span {
+            font-size: 0.9rem;
+            background-color: #EDF7F4;
+            color: var(--verde-azteca);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .tarjeta-mundial.m86 h2 span { background-color: #FFF9E6; color: #B78103; }
+        .tarjeta-mundial.m26 h2 span { background-color: #FDF0F6; color: var(--rosa-mexicano); }
+
+        .datos-duros {
+            background-color: var(--fondo-vivo);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        .presidente-box {
+            background-color: #F8F9FA;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.2rem 0;
+        }
+
+        .presidente-box h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--verde-azteca);
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .presidente-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .presidente-grid { grid-template-columns: 1fr; }
+        }
+
+        .presi-bueno { border-left: 3px solid #48BB78; padding-left: 0.5rem; }
+        .presi-malo { border-left: 3px solid #E53E3E; padding-left: 0.5rem; }
+
+        .sombras {
+            margin-top: 1.5rem;
+            padding: 1.2rem;
+            background-color: #FFF5F5;
+            border-radius: 8px;
+            border-left: 5px solid #E53E3E;
+        }
+
+        .sombras h3 {
+            margin: 0 0 0.5rem 0;
+            color: #C53030;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, var(--verde-azteca) 0%, #01412c 100%);
+            color: var(--blanco-puro);
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin-top: 4rem;
+            box-shadow: 0 10px 25px rgba(0,69,47,0.2);
+        }
+
+        .conclusion h2 {
+            margin-top: 0;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--oro-sol);
+            text-transform: uppercase;
+        }
+
+        .conclusion h3 {
+            color: var(--blanco-puro);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 0.3rem;
+        }
+
+        .conclusion ul {
+            padding-left: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .conclusion li {
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .conclusion li strong {
+            color: var(--oro-sol);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            background-color: var(--texto-negro);
+            color: #A0AEC0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>México en el Espejo Mundialista</h1>
+        <p>¡Goles, política y realidades de 1970, 1986 y 2026!</p>
+    </header>
+
+    <main>
+        <section class="introduccion">
+            <p>¡El único país tres veces mundialista! Mientras el balón rueda en la cancha, el poder se mueve en los palcos. Analicemos cómo la política presidencial se cruzó con la pasión del fútbol.</p>
+        </section>
+
+        <section class="linea-tiempo">
+            
+            <article class="tarjeta-mundial m70">
+                <h2>México 1970 <span>El Espejismo de la Modernidad</span></h2>
+                <div class="datos-duros">
+                    <strong>Hitos clave:</strong> Consagración de Pelé • Estreno de tarjetas amarillas y cambios • Transmisión satelital a color a todo el planeta • Balón Adidas Telstar.
+                </div>
+                <p><strong>Las Luces:</strong> México demostró capacidad técnica y de infraestructura masiva en estadios. El país proyectó la imagen internacional del "Milagro Mexicano": una nación en pleno desarrollo, pacífica y sumamente hospitalaria.</p>
+                
+                <div class="presidente-box">
+                    <h4>El Palco Presidencial: Gustavo Díaz Ordaz</h4>
+                    <div class="presidente-grid">
+                        <div class="presi-bueno">
+                            <strong>Lo Bueno:</strong> Consolidó la infraestructura urbana, el transporte masivo (Metro de la CDMX) y la logística para ligar consecutivamente los Juegos Olímpicos del 68 y el Mundial del 70, poniendo a México en la vanguardia técnica mundial.
+                        </div>
+                        <div class="presi-malo">
+                            <strong>Lo Malo:</strong> Su gobierno estuvo marcado por el autoritarismo duro y la brutal represión estudiantil de Tlatelolco en 1968. Gobernaba con puño de hierro y nula tolerancia a la disidencia.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sombras">
+                    <h3>El Fuera de Lugar (Lo Malo)</h3>
+                    <p>La fiesta deportiva sirvió como una gigantesca cortina de humo mediática. El régimen autoritario utilizó el júbilo del torneo para limpiar su rostro ensangrentado ante el mundo y enterrar el clamor popular de justicia social.</p>
+                </div>
+            </article>
+
+            <article class="tarjeta-mundial m86">
+                <h2>México 1986 <span>El Rugido de la Resiliencia</span></h2>
+                <div class="datos-duros">
+                    <strong>Hitos clave:</strong> La "Mano de Dios" y el Gol del Siglo de Maradona • Invención de "La Ola" en la tribuna • México entra de emergencia por la renuncia de Colombia.
+                </div>
+                <p><strong>Las Luces:</strong> Marcado por el terremoto de 1985. Ante un gobierno paralizado, la sociedad civil organizada levantó al país de los escombros. El Mundial se convirtió en un desfogue de hermandad y orgullo comunitario.</p>
+                
+                <div class="presidente-box">
+                    <h4>El Palco Presidencial: Miguel de la Madrid Hurtado</h4>
+                    <div class="presidente-grid">
+                        <div class="presi-bueno">
+                            <strong>Lo Bueno:</strong> Logró mantener la sede del Mundial en pie a pesar de la catástrofe del sismo de 1985 y comenzó la apertura comercial del país para intentar conectar a México con la economía internacional globalizada.
+                        </div>
+                        <div class="presi-malo">
+                            <strong>Lo Malo:</strong> Su alarmante lentitud y pasividad para reaccionar ante la tragedia del terremoto, además de gestionar una de las crisis económicas más severas con hiperinflación y devaluación que pulverizaron el bolsillo de la gente.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sombras">
+                    <h3>El Fuera de Lugar (Lo Malo)</h3>
+                    <p>El gasto millonario del torneo enfureció a la población en plena crisis. El descontento estalló en la inauguración del Azteca con una rechifla e insultos históricos directos contra el presidente, desnudando la fractura entre pueblo y gobierno.</p>
+                </div>
+            </article>
+
+            <article class="tarjeta-mundial m26">
+                <h2>México 2026 <span>La Vitrina Globalizada</span></h2>
+                <div class="datos-duros">
+                    <strong>Hitos clave:</strong> Primer mundial tripartita (México, EE. UU. y Canadá) • Expansión a 48 selecciones • Sedes: Estadio Azteca, Akron y BBVA.
+                </div>
+                <p><strong>Las Luces:</strong> El país se consolida como un titán del entretenimiento y la alta gestión logística. Compartir el torneo con las potencias del norte demuestra una capacidad de cooperación internacional sin precedentes.</p>
+                
+                <div class="presidente-box">
+                    <h4>El Palco Presidencial: Claudia Sheinbaum Pardo</h4>
+                    <div class="presidente-grid">
+                        <div class="presi-bueno">
+                            <strong>Lo Bueno:</strong> Capitalizó la enorme derrama económica, el turismo masivo y proyectó la soberanía de México logrando que el Estadio Azteca fuera el escenario de la inauguración histórica por tercera vez, consolidando al país como potencia cultural.
+                        </div>
+                        <div class="presi-malo">
+                            <strong>Lo Malo:</strong> El evento contrasta fuertemente con la presión por resolver las deudas pendientes en seguridad pública, la falta de agua en las zonas metropolitanas sedes y la contención de crisis fronterizas complejas.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sombras">
+                    <h3>El Fuera de Lugar (Lo Malo)</h3>
+                    <p>La fastuosidad del evento choca con los problemas estructurales: gentrificación acelerada, escasez crítica de agua y fuertes contrastes sociales. La narrativa de "fronteras abiertas" choca con las restrictivas políticas migratorias reales.</p>
+                </div>
+            </article>
+
+        </section>
+
+        <section class="conclusion">
+            <h2>El Silbatazo Final: Conclusión General</h2>
+            <p>A lo largo de 56 años de historia mundialista, México ha jugado dos partidos al mismo tiempo: uno de fútbol en la cancha y otro de supervivencia y evolución en sus calles.</p>
+            
+            <h3>¿Qué aprendemos del México que fuimos, somos y seremos?</h3>
+            <ul>
+                <li><strong>El México que fuimos (1970):</strong> Un país con una infraestructura impresionante pero atrapado bajo el yugo de un gobierno autoritario. Aprendimos que el optimismo y el color no deben usarse para maquillar la falta de libertades ni silenciar las tragedias sociales.</li>
+                <li><strong>El México que somos (1986):</strong> La prueba de fuego que nos enseñó que la sociedad civil es mucho más grande y fuerte que sus gobernantes. Aprendimos que la resiliencia y la solidaridad comunitaria son el verdadero motor que saca al país de las ruinas económicas y naturales.</li>
+                <li><strong>El México que seremos (2026 y el futuro):</strong> Una nación plenamente interconectada con el mundo, capaz de negociar con gigantes internacionales. El gran aprendizaje hacia el futuro es que el verdadero éxito no se mide en la modernidad de los estadios o en palcos lujosos, sino en nuestra capacidad para resolver las deudas históricas de desigualdad, agua y seguridad para que todo el pueblo gane el partido.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Tres Mundiales, Tres Gobiernos, Una Sola Sociedad • Crítica y Memoria Histórica &copy; 2026</p>
+    </footer>
+
+</body>
+</html>
